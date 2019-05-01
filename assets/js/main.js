@@ -6,8 +6,8 @@ const random = chance.integer({
     min: 1,
     max: 6
 });
-const startSnap = new Audio('audio/thanos_snap_sound.mp3');
-const startDust = new Audio('audio/thanos_dust_' + random + '.mp3');
+const startSnap = new Audio('assets/audio/thanos_snap_sound.mp3');
+const startDust = new Audio('assets/audio/thanos_dust_' + random + '.mp3');
 const thanosLogo = document.getElementById('thanos-idle');
 var imageDataArray = [];
 var canvasCount = 35;
