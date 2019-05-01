@@ -29,6 +29,13 @@
       position: relative;
       height: 100%;
     }
+
+    .back-animation__wrapper {
+      margin: auto;
+      overflow: hidden;
+      position: relative;
+      height: 100%;
+    }
   }
   
   .content {
@@ -52,7 +59,7 @@
     background-image: url("../image/thanos_snap_48.png");
     background-size: 100%, 100%;
     background-repeat: no-repeat;
-    animation-name: eye-fill;
+    animation-name: snap;
     animation-duration: 3s;
     animation-timing-function: steps(47);
     animation-iteration-count:initial;
@@ -68,7 +75,39 @@
     height: 80px;
   }
   
-  @keyframes eye-fill {
+  @keyframes snap {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-97.91666666%);
+    }
+  }
+
+  
+  .back-animation {
+    width: 4800%;
+    height: 100%;
+    background-image: url("../image/thanos_time_48.png");
+    background-size: 100%, 100%;
+    background-repeat: no-repeat;
+    animation-name: get-back;
+    animation-duration: 3s;
+    animation-timing-function: steps(47);
+    animation-iteration-count:initial;
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+  .back-animation__wrapper {
+    margin: auto;
+    overflow: hidden;
+    position: relative;
+    width: 80px;
+    height: 80px;
+  }
+  
+  @keyframes get-back {
     from {
       transform: translateX(0);
     }

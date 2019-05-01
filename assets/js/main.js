@@ -1,38 +1,49 @@
 const snapElement = `<div class="snap-animation__wrapper">
               <div class="snap-animation"></div>
           </div>`;
+const getBackElement = `<div class="back-animation__wrapper">
+          <div class="back-animation"></div>
+      </div>`;
 const fileChooser = document.getElementById('file-to-dust');
 const random = chance.integer({
     min: 1,
     max: 6
 });
 const startSnap = new Audio('assets/audio/thanos_snap_sound.mp3');
+const startSnapBack = new Audio('assets/audio/thanos_reverse_sound.mp3');
 const startDust = new Audio('assets/audio/thanos_dust_' + random + '.mp3');
 const thanosLogo = document.getElementById('thanos-idle');
+let snapped = false;
 var imageDataArray = [];
 var canvasCount = 10;
-fileChooser.onchange = function (evt) {
-    var tgt = evt.target || window.event.srcElement,
-        files = tgt.files;
 
-    // FileReader support
-    if (FileReader && files && files.length) {
-        var fr = new FileReader();
-        fr.onload = function () {
-            document.getElementById('victim').src = fr.result;
-        }
-        fr.readAsDataURL(files[0]);
+$("#start-btn").click(function () {
+    if(!snapped){
+        snap();
+    } else {
+        getBack();
     }
+});
 
-    // Not supported
-    else {
-        // fallback -- perhaps submit the input to an iframe and temporarily store
-        // them on the server until the user's session ends.
+function getBack(){
+    $('#start-btn').hide();
+    $('#start-btn').after(getBackElement);
+    startSnapBack.play();
+    startSnapBack.onplay = function(){
+        $('#victim').css({opacity: 0.0, visibility: "visible"}).animate({opacity: 1, border:"1px solid green"}, 3000);
+    }
+    startSnapBack.onended = function(){
+        $('#start-btn').show();
+        $('.back-animation__wrapper').remove();
+        snapped = false;
     }
 }
-$("#start-btn").click(function () {
-    $(this).hide();
-    $('#file-to-dust').before(snapElement);
+
+
+function snap()
+{
+    $('#start-btn').hide();
+    $('#start-btn').after(snapElement);
     startSnap.play();
     let options = {
         scale: 1
@@ -61,28 +72,30 @@ $("#start-btn").click(function () {
                 $("body").append(c);
             }
             //clear all children except the canvas
-            $(".content").fadeOut(1500);
+            $(".content").fadeOut(3500);
             //apply animation
             startToDust();
             $('.content').delay(3000).fadeIn();
+            $('#victim').css('visibility','hidden');
             $('#start-btn').show();
-            $('.snap-animation__wrapper').hide();
+            $('.snap-animation__wrapper').remove();
+            snapped = true;
         });
     }
-});
+}
 
 function startToDust() {
     $(".dust").each(function (index) {
         startDust.play();
-        animateBlur($(this), 0.8, 1200);
+        animateBlur($(this), 0.8, 800);
         setTimeout(() => {
             animateTransform($(this), 100, -100, chance.integer({
                 min: -15,
                 max: 15
-            }), 1200 + (200 * index));
-        }, 210 * index);
+            }), 800 + (110 * index));
+        }, 70 * index);
         //remove the canvas from DOM tree when faded
-        $(this).delay(210 * index).fadeOut((200 * index) + 1200, "easeInQuint", () => {
+        $(this).delay(70 * index).fadeOut((110 * index) + 800, "easeInQuint", () => {
             $(this).remove();
         });
     });
@@ -160,4 +173,24 @@ function newCanvasFromImageData(imageDataArray, w, h) {
     tempCtx.putImageData(new ImageData(imageDataArray, w, h), 0, 0);
 
     return canvas;
+}
+
+fileChooser.onchange = function (evt) {
+    var tgt = evt.target || window.event.srcElement,
+        files = tgt.files;
+
+    // FileReader support
+    if (FileReader && files && files.length) {
+        var fr = new FileReader();
+        fr.onload = function () {
+            document.getElementById('victim').src = fr.result;
+        }
+        fr.readAsDataURL(files[0]);
+    }
+
+    // Not supported
+    else {
+        // fallback -- perhaps submit the input to an iframe and temporarily store
+        // them on the server until the user's session ends.
+    }
 }
