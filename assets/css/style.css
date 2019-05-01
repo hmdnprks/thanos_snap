@@ -40,7 +40,7 @@
   #start-btn {
     width: 80px;
     height: 80px;
-    background-image:url("logo-thanos.png") 80px no-repeat;
+    background-image:url("../image/logo-thanos.png") 80px no-repeat;
   }
   .dust {
     position: absolute;
@@ -49,7 +49,7 @@
   .snap-animation {
     width: 4800%;
     height: 100%;
-    background-image: url("thanos_snap_48.png");
+    background-image: url("../image/thanos_snap_48.png");
     background-size: 100%, 100%;
     background-repeat: no-repeat;
     animation-name: eye-fill;
