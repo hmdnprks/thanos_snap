@@ -10,7 +10,7 @@ const startSnap = new Audio('assets/audio/thanos_snap_sound.mp3');
 const startDust = new Audio('assets/audio/thanos_dust_' + random + '.mp3');
 const thanosLogo = document.getElementById('thanos-idle');
 var imageDataArray = [];
-var canvasCount = 35;
+var canvasCount = 10;
 fileChooser.onchange = function (evt) {
     var tgt = evt.target || window.event.srcElement,
         files = tgt.files;
@@ -33,8 +33,6 @@ fileChooser.onchange = function (evt) {
 $("#start-btn").click(function () {
     $(this).hide();
     $('#file-to-dust').before(snapElement);
-    // $(snapElement).delay(3000).remove();
-    // $(this).show();
     startSnap.play();
     let options = {
         scale: 1
@@ -63,7 +61,7 @@ $("#start-btn").click(function () {
                 $("body").append(c);
             }
             //clear all children except the canvas
-            $(".content").fadeOut(3500);
+            $(".content").fadeOut(1500);
             //apply animation
             startToDust();
             $('.content').delay(3000).fadeIn();
@@ -76,15 +74,15 @@ $("#start-btn").click(function () {
 function startToDust() {
     $(".dust").each(function (index) {
         startDust.play();
-        animateBlur($(this), 0.8, 800);
+        animateBlur($(this), 0.8, 1200);
         setTimeout(() => {
             animateTransform($(this), 100, -100, chance.integer({
                 min: -15,
                 max: 15
-            }), 800 + (110 * index));
-        }, 70 * index);
+            }), 1200 + (200 * index));
+        }, 210 * index);
         //remove the canvas from DOM tree when faded
-        $(this).delay(70 * index).fadeOut((110 * index) + 800, "easeInQuint", () => {
+        $(this).delay(210 * index).fadeOut((200 * index) + 1200, "easeInQuint", () => {
             $(this).remove();
         });
     });
