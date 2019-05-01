@@ -1,0 +1,56 @@
+* {
+    box-sizing: border-box;
+  }
+  body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #ddd;
+  }
+  .content {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background: #ddd;
+  }
+  #start-btn {
+    width: 80px;
+    height: 80px;
+    background-image:url("logo-thanos.png") 80px no-repeat;
+  }
+  .dust {
+    position: absolute;
+  }
+
+  .snap-animation {
+    width: 4800%;
+    height: 100%;
+    background-image: url("thanos_snap_48.png");
+    background-size: 100%, 100%;
+    background-repeat: no-repeat;
+    animation-name: eye-fill;
+    animation-duration: 3s;
+    animation-timing-function: steps(47);
+    animation-iteration-count:initial;
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+  .snap-animation__wrapper {
+    margin: auto;
+    overflow: hidden;
+    position: relative;
+    width: 80px;
+    height: 80px;
+  }
+  
+  @keyframes eye-fill {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-97.91666666%);
+    }
+  }
