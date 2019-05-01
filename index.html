@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
     <link rel="stylesheet" type="text/css" href="style.css">
     <script src="html2canvas.min.js"></script>
     <script src="chance.min.js"></script>
@@ -11,8 +12,10 @@
 </head>
 <body>
     <div class="content">
-        <img id="victim" src="thanos.png" height="300" style="max-width: 500px;" >
-        <img src="logo-thanos.png" width="80" id="start-btn"></button>
+        <div class="img-container">
+            <img id="victim" src="thanos.png" style="max-width: 500px; max-height: 400px" >
+        </div>
+        <img src="logo-thanos.png" width="100" style="max-width: 100px; max-height: 100px" id="start-btn"></button>
         <input type="file" name="fileToDust" id="file-to-dust"/>
     </div>  
 

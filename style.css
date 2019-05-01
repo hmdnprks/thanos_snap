@@ -9,6 +9,28 @@
     align-items: center;
     background: #ddd;
   }
+
+  @media only screen and (max-width:767px){
+    #victim{
+      max-width: none;
+      min-width: none;
+      height: 100%;
+    }
+
+    #start-btn{
+      max-width: none;
+      min-width: none;
+      height: 100%;
+    }
+
+    .snap-animation__wrapper {
+      margin: auto;
+      overflow: hidden;
+      position: relative;
+      height: 100%;
+    }
+  }
+  
   .content {
     display: flex;
     align-items: center;
